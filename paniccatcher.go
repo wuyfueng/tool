@@ -1,4 +1,4 @@
-package tools
+package tool
 
 // Panic is a snapshot of a panic, containing both the panic's reason and the
 // system stack.

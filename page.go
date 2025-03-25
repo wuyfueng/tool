@@ -1,4 +1,4 @@
-package tools
+package tool
 
 // PageRange 分页处理
 // f func(page, startIndex, endIndex int)
