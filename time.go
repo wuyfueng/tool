@@ -1,6 +1,9 @@
 package tool
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 var (
 	LocalZone = time.Now().Location()
@@ -55,4 +58,30 @@ func AppointTodayEndTimestamp(day int64) int64 {
 	datetime := time.Now().Format("2006-01-02")
 	res, _ := time.ParseInLocation("2006-01-02", datetime, time.Local)
 	return res.Unix() + day*86400
+}
+
+// UnixTimeToStr Unix时间戳转化为格式化的字符串字符串
+func UnixTimeToStr(value interface{}, format string) (result string) {
+	var seconds int64
+	switch v := value.(type) {
+	case uint:
+		seconds = int64(v)
+	case int:
+		seconds = int64(v)
+	case int64:
+		seconds = v
+	case string:
+		seconds, _ = strconv.ParseInt(v, 10, 64)
+	}
+	if seconds > 1e12 {
+		seconds /= 1000
+	}
+	if seconds == 0 {
+		result = "-"
+	} else {
+		t := time.Unix(seconds, 0)
+		result = t.In(LocalZone).Format(format)
+	}
+
+	return
 }
