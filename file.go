@@ -19,3 +19,15 @@ func AppendFile(filename string, data []byte, perm os.FileMode) error {
 
 	return nil
 }
+
+// DirIsExitOrMk 检测路径是否存在, 不存在则创建
+func DirIsExitOrMk(dir string) error {
+	if _, err := os.Stat(dir); err != nil {
+		// 尝试创建
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
