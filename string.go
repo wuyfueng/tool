@@ -1,7 +1,6 @@
 package tool
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -16,7 +15,7 @@ func ToCamel(str string, capitalize bool) (camelStr string) {
 		if k == 0 && !capitalize {
 			camelStr += v
 		} else {
-			camelStr += fmt.Sprintf("%X%s", v[0], v[1:])
+			camelStr += strings.ToUpper(string(v[0])) + v[1:]
 		}
 	}
 
