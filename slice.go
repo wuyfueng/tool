@@ -136,3 +136,11 @@ func InArrayInt64(arr []int64, elem int64) bool {
 	}
 	return false
 }
+
+// StringToSS 字符串自定义转字符串切片
+func StringToSS(str, separator string, f func(str string) string) (ss []string) {
+	for _, v := range strings.Split(str, separator) {
+		ss = append(ss, f(v))
+	}
+	return
+}
